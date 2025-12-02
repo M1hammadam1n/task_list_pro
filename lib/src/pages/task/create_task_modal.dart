@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forui/forui.dart';
+import 'package:maps_test/src/pages/task/set_category_modal.dart';
+import 'package:maps_test/src/pages/task/set_date_time.dart';
 
 class CreateTaskDialog extends StatelessWidget {
   const CreateTaskDialog({super.key});
@@ -39,22 +41,15 @@ class CreateTaskDialog extends StatelessWidget {
                 ),
               ),
             ),
-            // const SizedBox(height: 16),
-            // TextField(
-            //   style: const TextStyle(color: Colors.white),
-            //   maxLines: 5,
-            //   decoration: InputDecoration(
-            //     hintText: "Task Description",
-            //     hintStyle: const TextStyle(color: Colors.white38),
-            //     filled: true,
-            //     fillColor: const Color(0xFF1A1A2F),
-            //     border: OutlineInputBorder(
-            //       borderRadius: BorderRadius.circular(12),
-            //       borderSide: BorderSide.none,
-            //     ),
-            //   ),
-            // ),
-            const SizedBox(height: 24),
+            SizedBox(height: 20,),
+            Row(
+              children: [
+                Text('  Add sub-task',style: TextStyle(color: Colors.grey),),
+                Spacer(),
+                Icon(Icons.add_box_outlined,color: Colors.grey,),
+              ],
+            ),
+            const SizedBox(height: 50),
          Row(
   mainAxisAlignment: MainAxisAlignment.spaceAround,
   children: [
@@ -66,28 +61,32 @@ class CreateTaskDialog extends StatelessWidget {
   onSecondaryLongPress: () {},
   shortcuts: { SingleActivator(LogicalKeyboardKey.enter): ActivateIntent() },
   actions: { ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) {}) },
-  child: const Text('Button'),
+  child: const Text('Category'),
 ),
   FButton(
     // style: FButtonStyle.outline(),
   mainAxisSize: MainAxisSize.min,
-  onPress: () {},
-  onSecondaryPress: () {},
-  onSecondaryLongPress: () {},
-  shortcuts: { SingleActivator(LogicalKeyboardKey.enter): ActivateIntent() },
-  actions: { ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) {}) },
-  child: const Text('Button'),
+ onPress: () {
+    Navigator.of(context).pop(); // Закрываем текущий CreateTaskDialog
+    showDialog(
+      context: context,
+      builder: (context) => const SetDateTime(), // Открываем новый диалог
+    );
+  },
+  child: const Text('Date & Time'),
 ),
-  FButton(
-  // style: FButtonStyle(),
+FButton(
   mainAxisSize: MainAxisSize.min,
-  onPress: () {},
-  onSecondaryPress: () {},
-  onSecondaryLongPress: () {},
-  shortcuts: { SingleActivator(LogicalKeyboardKey.enter): ActivateIntent() },
-  actions: { ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) {}) },
-  child: const Text('Button'),
+  onPress: () {
+    Navigator.of(context).pop(); // Закрываем текущий CreateTaskDialog
+    showDialog(
+      context: context,
+      builder: (context) => const SelectSetDialog(), // Открываем новый диалог
+    );
+  },
+  child: const Text('Set'),
 ),
+
   ],
 ),
 
