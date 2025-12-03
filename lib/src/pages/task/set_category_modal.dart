@@ -51,13 +51,13 @@ class _SelectSetDialogState extends State<SelectSetDialog> {
                       Radio<String>(
                         value: category,
                         groupValue: _selectedCategory,
-                        fillColor: MaterialStateProperty.resolveWith<Color>((
+                        fillColor: WidgetStateProperty.resolveWith<Color>((
                           states,
                         ) {
-                          if (states.contains(MaterialState.selected)) {
-                            return const Color(0xFF7A12FF); 
+                          if (states.contains(WidgetState.selected)) {
+                            return const Color(0xFF7A12FF);
                           }
-                          return Colors.white; 
+                          return Colors.white;
                         }),
                         onChanged: (value) {
                           setState(() {
@@ -84,7 +84,7 @@ class _SelectSetDialogState extends State<SelectSetDialog> {
                 FButton(
                   mainAxisSize: MainAxisSize.min,
                   onPress: () {
-                    Navigator.of(context).pop(); // Закрыть без выбора
+                    Navigator.of(context).pop();
                   },
                   child: const Text('Cancel'),
                 ),
@@ -92,8 +92,6 @@ class _SelectSetDialogState extends State<SelectSetDialog> {
                 FButton(
                   mainAxisSize: MainAxisSize.min,
                   onPress: () {
-                    // Логика сохранения выбранной категории
-                    print('Selected category: $_selectedCategory');
                     Navigator.of(context).pop();
                   },
                   child: const Text('Done'),

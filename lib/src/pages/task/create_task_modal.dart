@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forui/forui.dart';
-import 'package:maps_test/src/pages/task/set_category_modal.dart';
+import 'package:maps_test/src/pages/task/category_selection_dialog.dart';
 import 'package:maps_test/src/pages/task/set_date_time.dart';
 
 class CreateTaskDialog extends StatelessWidget {
@@ -11,7 +10,6 @@ class CreateTaskDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      
       backgroundColor: const Color(0xFF242443),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
@@ -23,9 +21,10 @@ class CreateTaskDialog extends StatelessWidget {
             const Text(
               "Create New Task",
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 20),
             TextField(
@@ -41,55 +40,57 @@ class CreateTaskDialog extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
-            Row(
+            const SizedBox(height: 20),
+            const Row(
               children: [
-                Text('  Add sub-task',style: TextStyle(color: Colors.grey),),
+                Text('  Add sub-task', style: TextStyle(color: Colors.grey)),
                 Spacer(),
-                Icon(Icons.add_box_outlined,color: Colors.grey,),
+                Icon(Icons.add_box_outlined, color: Colors.grey),
               ],
             ),
             const SizedBox(height: 50),
-         Row(
-  mainAxisAlignment: MainAxisAlignment.spaceAround,
-  children: [
-  FButton(
-  // style: FButtonStyle(),
-  mainAxisSize: MainAxisSize.min,
-  onPress: () {},
-  onSecondaryPress: () {},
-  onSecondaryLongPress: () {},
-  shortcuts: { SingleActivator(LogicalKeyboardKey.enter): ActivateIntent() },
-  actions: { ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) {}) },
-  child: const Text('Category'),
-),
-  FButton(
-    // style: FButtonStyle.outline(),
-  mainAxisSize: MainAxisSize.min,
- onPress: () {
-    Navigator.of(context).pop(); // Закрываем текущий CreateTaskDialog
-    showDialog(
-      context: context,
-      builder: (context) => const SetDateTime(), // Открываем новый диалог
-    );
-  },
-  child: const Text('Date & Time'),
-),
-FButton(
-  mainAxisSize: MainAxisSize.min,
-  onPress: () {
-    Navigator.of(context).pop(); // Закрываем текущий CreateTaskDialog
-    showDialog(
-      context: context,
-      builder: (context) => const SelectSetDialog(), // Открываем новый диалог
-    );
-  },
-  child: const Text('Set'),
-),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FButton(
+                  mainAxisSize: MainAxisSize.min,
+                  onPress: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => CategorySelectionDialog(),
+                    ).then((selectedCategory) {
+                      if (selectedCategory != null) {}
+                    });
+                  },
+                  shortcuts: {
+                    SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+                  },
+                  actions: {
+                    ActivateIntent: CallbackAction<ActivateIntent>(
+                      onInvoke: (_) => null,
+                    ),
+                  },
+                  child: const Text('Category'),
+                ),
+                FButton(
+                  mainAxisSize: MainAxisSize.min,
+                  onPress: () {
+                    Navigator.of(context).pop();
+                    showDialog(
+                      context: context,
+                      builder: (context) => const SetDateTime(),
+                    );
+                  },
+                  child: const Text('Date & Time'),
+                ),
 
-  ],
-),
-
+                FButton(
+                  mainAxisSize: MainAxisSize.min,
+                  onPress: () {},
+                  child: const Text('Set'),
+                ),
+              ],
+            ),
           ],
         ),
       ),

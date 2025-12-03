@@ -34,11 +34,7 @@ class _MainLoaderState extends State<MainLoader> {
     if (_isLoading) {
       return const Scaffold(
         backgroundColor: Color(0xFF1A1A2F),
-        body: Center(
-          child: CircularProgressIndicator(
-            color: Colors.white,
-          ),
-        ),
+        body: Center(child: CircularProgressIndicator(color: Colors.white)),
       );
     }
     return _isFirstLaunch ? const WelcomePage() : const MainNavigation();

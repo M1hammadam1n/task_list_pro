@@ -17,24 +17,25 @@ class SetReminderDialog extends StatefulWidget {
 class _SetReminderDialogState extends State<SetReminderDialog> {
   String _selectedAmount = '01';
   String _selectedUnit = 'Minutes';
-  
+
   final List<String> _amounts = ['01', '05', '10', '15', '30', '45', '60'];
   final List<String> _units = ['Minutes', 'Hours', 'Days'];
 
   String _formatDateTime() {
     final date = widget.selectedDate;
     final time = widget.selectedTime ?? TimeOfDay.now();
-    
-    final formattedDate = '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+
+    final formattedDate =
+        '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
     final formattedTime = time.format(context);
-    
+
     return '$formattedDate $formattedTime';
   }
 
   @override
   Widget build(BuildContext context) {
-    const dialogBackgroundColor = Color(0xFF242443); 
-    const primaryColor = Color(0xFF673AB7); // Фиолетовый цвет для кнопки Done
+    const dialogBackgroundColor = Color(0xFF242443);
+    const primaryColor = Color(0xFF673AB7);
 
     return Dialog(
       backgroundColor: dialogBackgroundColor,
@@ -54,13 +55,13 @@ class _SetReminderDialogState extends State<SetReminderDialog> {
               ),
             ),
             const SizedBox(height: 20),
-            
+
             Text(
               _formatDateTime(),
               style: const TextStyle(color: Colors.white70, fontSize: 16),
             ),
             const SizedBox(height: 30),
-            
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -77,9 +78,9 @@ class _SetReminderDialogState extends State<SetReminderDialog> {
                 }),
               ],
             ),
-            
+
             const SizedBox(height: 30),
-            
+
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -88,7 +89,9 @@ class _SetReminderDialogState extends State<SetReminderDialog> {
                 }),
                 const SizedBox(width: 10),
                 _buildActionButton('Done', primaryColor, () {
-                  Navigator.of(context).pop({'amount': _selectedAmount, 'unit': _selectedUnit});
+                  Navigator.of(
+                    context,
+                  ).pop({'amount': _selectedAmount, 'unit': _selectedUnit});
                 }),
               ],
             ),
@@ -98,12 +101,16 @@ class _SetReminderDialogState extends State<SetReminderDialog> {
     );
   }
 
-  Widget _buildDropdown(String value, List<String> items, ValueChanged<String?> onChanged) {
+  Widget _buildDropdown(
+    String value,
+    List<String> items,
+    ValueChanged<String?> onChanged,
+  ) {
     return Container(
       width: 100,
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
-        color: Colors.white12, 
+        color: Colors.white12,
         borderRadius: BorderRadius.circular(10),
       ),
       child: DropdownButtonHideUnderline(
@@ -112,7 +119,10 @@ class _SetReminderDialogState extends State<SetReminderDialog> {
           items: items.map<DropdownMenuItem<String>>((String item) {
             return DropdownMenuItem<String>(
               value: item,
-              child: Text(item, style: const TextStyle(color: Colors.white, fontSize: 16)),
+              child: Text(
+                item,
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
             );
           }).toList(),
           onChanged: onChanged,
@@ -134,7 +144,10 @@ class _SetReminderDialogState extends State<SetReminderDialog> {
       onPressed: onTap,
       child: Text(
         text,
-        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

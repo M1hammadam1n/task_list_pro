@@ -49,15 +49,17 @@ class _TaskPageState extends State<TaskPage> {
       initiallyExpanded: false,
       subtasks: [
         TaskItemData(
-            title: 'Title-1',
-            date: '14/12/22',
-            statusColor: Colors.amber,
-            isCompleted: true),
+          title: 'Title-1',
+          date: '14/12/22',
+          statusColor: Colors.amber,
+          isCompleted: true,
+        ),
         TaskItemData(
-            title: 'Title-2',
-            date: '12/12/22',
-            statusColor: Colors.teal,
-            isCompleted: true),
+          title: 'Title-2',
+          date: '12/12/22',
+          statusColor: Colors.teal,
+          isCompleted: true,
+        ),
         TaskItemData(
           title: 'Title-3',
           date: '03/12/22',
@@ -109,7 +111,10 @@ class _TaskPageState extends State<TaskPage> {
           const Text(
             "Description",
             style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
           const Text(
@@ -120,7 +125,10 @@ class _TaskPageState extends State<TaskPage> {
           const Text(
             "Notes",
             style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
           const Text(
@@ -162,7 +170,7 @@ class _TaskPageState extends State<TaskPage> {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -187,8 +195,10 @@ class _TaskPageState extends State<TaskPage> {
           ),
           child: SafeArea(
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 25),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 25,
+              ),
               child: _isSearching
                   ? Row(
                       children: [
@@ -199,30 +209,40 @@ class _TaskPageState extends State<TaskPage> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 0),
+                              horizontal: 0,
+                              vertical: 0,
+                            ),
                             child: TextField(
                               controller: _searchController,
                               autofocus: true,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 18),
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                               cursorColor: Colors.white,
                               decoration: InputDecoration(
                                 hintText: 'Search Tasks...',
                                 hintStyle: const TextStyle(
-                                    color: Color(0xFFA1A1C1),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500),
+                                  color: Color(0xFFA1A1C1),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                ),
                                 border: InputBorder.none,
-                                contentPadding:
-                                    const EdgeInsets.symmetric(vertical: 14),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 14,
+                                ),
                                 prefixIcon: IconButton(
-                                  icon: const Icon(Icons.arrow_back,
-                                      color: Colors.white),
+                                  icon: const Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                  ),
                                   onPressed: _closeSearch,
                                 ),
                                 suffixIcon: IconButton(
-                                  icon: const Icon(Icons.search,
-                                      color: Colors.white),
+                                  icon: const Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                  ),
                                   onPressed: () {},
                                 ),
                               ),
@@ -236,8 +256,9 @@ class _TaskPageState extends State<TaskPage> {
                       children: [
                         const CircleAvatar(
                           radius: 30,
-                          backgroundImage:
-                              NetworkImage('https://i.pravatar.cc/150?img=3'),
+                          backgroundImage: NetworkImage(
+                            'https://i.pravatar.cc/150?img=3',
+                          ),
                         ),
                         const SizedBox(width: 12),
                         Column(
@@ -247,7 +268,9 @@ class _TaskPageState extends State<TaskPage> {
                             Text(
                               'Hello Joshitha',
                               style: TextStyle(
-                                  color: Colors.white70, fontSize: 16),
+                                color: Colors.white70,
+                                fontSize: 16,
+                              ),
                             ),
                             SizedBox(height: 4),
                             Text(
@@ -287,11 +310,13 @@ class _TaskPageState extends State<TaskPage> {
               itemCount: sectionsData.length,
               itemBuilder: (context, index) {
                 final section = sectionsData[index];
-bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
+                bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
 
                 return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 4,
+                  ),
                   child: Container(
                     decoration: BoxDecoration(
                       color: const Color(0xFF242443),
@@ -312,8 +337,10 @@ bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (section.hasAddButton)
-                                const Icon(Icons.add_circle_outline,
-                                    color: Colors.white),
+                                const Icon(
+                                  Icons.add_circle_outline,
+                                  color: Colors.white,
+                                ),
                               GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -361,8 +388,9 @@ bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
                                               title: Text(
                                                 task.title,
                                                 style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18),
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                ),
                                               ),
                                               trailing: Icon(
                                                 task.isOpen
@@ -377,8 +405,9 @@ bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
                                               },
                                             ),
                                             AnimatedSize(
-                                              duration:
-                                                  const Duration(milliseconds: 300),
+                                              duration: const Duration(
+                                                milliseconds: 300,
+                                              ),
                                               curve: Curves.easeInOut,
                                               child: task.isOpen
                                                   ? _buildTaskDetails(task)
@@ -408,8 +437,9 @@ bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
                                                 ? "See Less"
                                                 : "See More",
                                             style: const TextStyle(
-                                                color: Colors.white70,
-                                                fontSize: 16),
+                                              color: Colors.white70,
+                                              fontSize: 16,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -423,44 +453,44 @@ bool expanded = _isExpanded[index] ?? section.initiallyExpanded;
                 );
               },
             ),
-           Positioned(
-  bottom: 100,
-  left: 16,
-  right: 16,
-  child: SizedBox(
-    height: 60,
-    child: ElevatedButton.icon(
-      onPressed: () {
-        // Показываем модальное окно
-        showDialog(
-          context: context,
-          builder: (context) => const CreateTaskDialog(), // <-- наш отдельный класс модалки
-        );
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF5F33E1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-      icon: const Icon(Icons.add_circle_outline,
-          color: Colors.white, size: 28),
-      label: const Text(
-        "Create New Task",
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold),
-      ),
-    ),
-  ),
-),
-
+            Positioned(
+              bottom: 100,
+              left: 16,
+              right: 16,
+              child: SizedBox(
+                height: 60,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const CreateTaskDialog(),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF5F33E1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  icon: const Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.white,
+                    size: 28,
+                  ),
+                  label: const Text(
+                    "Create New Task",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-

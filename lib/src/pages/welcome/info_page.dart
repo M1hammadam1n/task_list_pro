@@ -61,24 +61,18 @@ class InfoPage extends StatelessWidget {
                     color: const Color(0xFF5F33E1),
                   ),
                   child: TextButton(
-                    // onPressed: () {
-                    //   Navigator.pushReplacement(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (_) => const MainNavigation(),
-                    //     ),
-                    //   );
-                    // },
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await prefs.setBool('first_launch', false);
 
-onPressed: () async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('first_launch', false);
-
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (_) => const MainNavigation()),
-  );
-},
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const MainNavigation(),
+                        ),
+                      );
+                    },
 
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
